@@ -1,343 +1,219 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, ShoppingCart, Truck, CreditCard, Shield, Search, Menu, User, Heart } from "lucide-react";
+import { MessageCircle, Star, Shield, Truck } from "lucide-react";
 
 const Index = () => {
-  const featuredProducts = [
+  const whatsappNumber = "5511968394057";
+  
+  const contactWhatsApp = (model: string) => {
+    const message = `Olá! Tenho interesse no ${model}. Poderia me dar mais informações?`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const iphones = [
     {
       id: 1,
-      name: "Smart TV 55\" 4K Samsung",
-      price: "R$ 2.299,00",
-      originalPrice: "R$ 2.899,00",
-      discount: "21%",
-      image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop",
-      rating: 4.5,
-      reviews: 234
+      model: "iPhone 15 Pro Max",
+      storage: "256GB",
+      color: "Titânio Natural",
+      price: "R$ 8.999",
+      originalPrice: "R$ 9.499",
+      image: "📱",
+      features: ["Chip A17 Pro", "Câmera 48MP", "ProRAW", "Zoom 5x"],
+      rating: 5
     },
     {
       id: 2,
-      name: "Geladeira Brastemp 500L",
-      price: "R$ 1.799,00",
-      originalPrice: "R$ 2.199,00",
-      discount: "18%",
-      image: "https://images.unsplash.com/photo-1571175351071-77a2e2d7e5d7?w=400&h=300&fit=crop",
-      rating: 4.8,
-      reviews: 156
+      model: "iPhone 15 Pro",
+      storage: "128GB", 
+      color: "Titânio Azul",
+      price: "R$ 7.299",
+      originalPrice: "R$ 7.799",
+      image: "📱",
+      features: ["Chip A17 Pro", "Câmera 48MP", "ProRAW", "Zoom 3x"],
+      rating: 5
     },
     {
       id: 3,
-      name: "iPhone 15 Pro Max 256GB",
-      price: "R$ 8.999,00",
-      originalPrice: "R$ 9.899,00",
-      discount: "9%",
-      image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&h=300&fit=crop",
-      rating: 4.9,
-      reviews: 89
+      model: "iPhone 15",
+      storage: "128GB",
+      color: "Azul",
+      price: "R$ 5.999",
+      originalPrice: "R$ 6.299",
+      image: "📱",
+      features: ["Chip A16", "Câmera 48MP", "USB-C", "Ceramic Shield"],
+      rating: 4
     },
     {
       id: 4,
-      name: "Notebook Lenovo i7 16GB",
-      price: "R$ 3.299,00",
-      originalPrice: "R$ 3.899,00",
-      discount: "15%",
-      image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=300&fit=crop",
-      rating: 4.6,
-      reviews: 312
+      model: "iPhone 14",
+      storage: "128GB",
+      color: "Roxo",
+      price: "R$ 4.699",
+      originalPrice: "R$ 5.199",
+      image: "📱",
+      features: ["Chip A15", "Câmera 12MP", "Face ID", "5G"],
+      rating: 4
     },
     {
       id: 5,
-      name: "Ar Condicionado Split 12000BTU",
-      price: "R$ 1.299,00",
-      originalPrice: "R$ 1.599,00",
-      discount: "19%",
-      image: "https://images.unsplash.com/photo-1585338447937-7082f8fc763d?w=400&h=300&fit=crop",
-      rating: 4.4,
-      reviews: 198
+      model: "iPhone 13",
+      storage: "128GB",
+      color: "Rosa",
+      price: "R$ 3.999",
+      originalPrice: "R$ 4.399",
+      image: "📱",
+      features: ["Chip A15", "Câmera 12MP", "Face ID", "5G"],
+      rating: 4
     },
     {
       id: 6,
-      name: "Máquina de Lavar 11kg Electrolux",
-      price: "R$ 1.599,00",
-      originalPrice: "R$ 1.899,00",
-      discount: "16%",
-      image: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&h=300&fit=crop",
-      rating: 4.7,
-      reviews: 267
+      model: "iPhone SE",
+      storage: "64GB",
+      color: "Preto",
+      price: "R$ 2.699",
+      originalPrice: "R$ 2.999",
+      image: "📱",
+      features: ["Chip A15", "Touch ID", "Câmera 12MP", "Compacto"],
+      rating: 4
     }
   ];
 
-  const categories = [
-    { name: "Eletrodomésticos", icon: "🏠", count: "2.340" },
-    { name: "Celulares", icon: "📱", count: "856" },
-    { name: "TVs", icon: "📺", count: "445" },
-    { name: "Informática", icon: "💻", count: "1.234" },
-    { name: "Móveis", icon: "🛋️", count: "789" },
-    { name: "Casa e Construção", icon: "🔨", count: "567" }
-  ];
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/50 to-background">
       {/* Header */}
-      <header className="bg-card border-b sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-3">
+      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
-              </Button>
-              <div className="text-2xl font-bold text-primary">
-                CasasBahia
-              </div>
-            </div>
-            
-            <div className="hidden md:flex flex-1 max-w-xl mx-8">
-              <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <input
-                  type="text"
-                  placeholder="O que você está procurando?"
-                  className="w-full pl-10 pr-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="icon">
-                <Heart className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="relative">
-                <ShoppingCart className="h-5 w-5" />
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs">3</Badge>
-              </Button>
-            </div>
-          </div>
-          
-          {/* Mobile search */}
-          <div className="md:hidden mt-3">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-              <input
-                type="text"
-                placeholder="O que você está procurando?"
-                className="w-full pl-10 pr-4 py-2 border border-input rounded-md"
-              />
-            </div>
+            <h1 className="text-2xl font-bold text-primary">📱 iPhone Store</h1>
+            <Button 
+              onClick={() => contactWhatsApp("iPhone")}
+              className="bg-green-600 hover:bg-green-700 text-white gap-2"
+            >
+              <MessageCircle size={20} />
+              WhatsApp
+            </Button>
           </div>
         </div>
       </header>
 
-      {/* Navigation */}
-      <nav className="bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 py-2">
-          <div className="hidden md:flex items-center space-x-6 text-sm">
-            <a href="#" className="hover:underline">Departamentos</a>
-            <a href="#" className="hover:underline">Ofertas</a>
-            <a href="#" className="hover:underline">Black Friday</a>
-            <a href="#" className="hover:underline">Cartão CasasBahia</a>
-            <a href="#" className="hover:underline">Meus Pedidos</a>
-            <a href="#" className="hover:underline">Atendimento</a>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Banner */}
-      <section className="store-gradient text-white py-12">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Black Friday
-          </h1>
-          <p className="text-xl md:text-2xl mb-8">
-            Até 70% OFF + Frete Grátis
-          </p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-            Ver Ofertas
-          </Button>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section className="py-8 bg-secondary">
+      {/* Hero Section */}
+      <section className="py-20 text-center">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex items-center justify-center space-x-3 text-secondary-foreground">
-              <Truck className="h-8 w-8 text-primary" />
-              <div>
-                <div className="font-semibold">Frete Grátis</div>
-                <div className="text-sm">Nas compras acima de R$ 199</div>
-              </div>
+          <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            iPhones Originais
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Encontre o iPhone perfeito para você com os melhores preços e garantia oficial Apple
+          </p>
+          <div className="flex flex-wrap justify-center gap-6 text-sm">
+            <div className="flex items-center gap-2">
+              <Shield className="text-green-500" size={16} />
+              <span>Garantia Oficial</span>
             </div>
-            <div className="flex items-center justify-center space-x-3 text-secondary-foreground">
-              <CreditCard className="h-8 w-8 text-primary" />
-              <div>
-                <div className="font-semibold">Parcelamento</div>
-                <div className="text-sm">Em até 24x sem juros</div>
-              </div>
+            <div className="flex items-center gap-2">
+              <Truck className="text-blue-500" size={16} />
+              <span>Entrega Rápida</span>
             </div>
-            <div className="flex items-center justify-center space-x-3 text-secondary-foreground">
-              <Shield className="h-8 w-8 text-primary" />
-              <div>
-                <div className="font-semibold">Compra Segura</div>
-                <div className="text-sm">Seus dados protegidos</div>
-              </div>
+            <div className="flex items-center gap-2">
+              <Star className="text-yellow-500" size={16} />
+              <span>Melhor Preço</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Categories */}
+      {/* Products Grid */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Categorias</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.map((category, index) => (
-              <Card key={index} className="store-card cursor-pointer text-center">
-                <CardContent className="p-6">
-                  <div className="text-4xl mb-2">{category.icon}</div>
-                  <h3 className="font-semibold mb-1">{category.name}</h3>
-                  <p className="text-sm text-muted-foreground">{category.count} produtos</p>
+          <h3 className="text-3xl font-bold text-center mb-12">Nossos Produtos</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {iphones.map((iphone) => (
+              <Card key={iphone.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
+                <CardHeader className="text-center pb-4">
+                  <div className="text-6xl mb-4">{iphone.image}</div>
+                  <CardTitle className="text-xl">{iphone.model}</CardTitle>
+                  <CardDescription className="text-sm">
+                    {iphone.storage} • {iphone.color}
+                  </CardDescription>
+                </CardHeader>
+                
+                <CardContent className="space-y-4">
+                  <div className="flex justify-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={16}
+                        className={i < iphone.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}
+                      />
+                    ))}
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1">
+                    {iphone.features.map((feature, index) => (
+                      <Badge key={index} variant="secondary" className="text-xs">
+                        {feature}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <div className="text-center space-y-2">
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="text-2xl font-bold text-primary">{iphone.price}</span>
+                      <span className="text-sm text-muted-foreground line-through">{iphone.originalPrice}</span>
+                    </div>
+                    <p className="text-xs text-green-600 font-medium">💰 Economize até R$ 500!</p>
+                  </div>
                 </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="py-12 bg-secondary">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-secondary-foreground">Produtos em Destaque</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProducts.map((product) => (
-              <Card key={product.id} className="store-card group cursor-pointer">
-                <div className="relative">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-cover rounded-t-lg"
-                  />
-                  <Badge className="absolute top-2 left-2 bg-destructive text-destructive-foreground">
-                    -{product.discount}
-                  </Badge>
-                  <Button
-                    size="icon"
-                    variant="secondary"
-                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                
+                <CardFooter>
+                  <Button 
+                    onClick={() => contactWhatsApp(iphone.model)}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white gap-2 group-hover:scale-105 transition-transform"
                   >
-                    <Heart className="h-4 w-4" />
+                    <MessageCircle size={18} />
+                    Comprar via WhatsApp
                   </Button>
-                </div>
-                <CardContent className="p-4">
-                  <h3 className="font-semibold mb-2 line-clamp-2">{product.name}</h3>
-                  <div className="flex items-center mb-2">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${
-                            i < Math.floor(product.rating)
-                              ? "text-yellow-400 fill-current"
-                              : "text-gray-300"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-sm text-muted-foreground ml-2">
-                      ({product.reviews})
-                    </span>
-                  </div>
-                  <div className="mb-3">
-                    <div className="text-sm text-muted-foreground line-through">
-                      {product.originalPrice}
-                    </div>
-                    <div className="text-xl font-bold text-primary">
-                      {product.price}
-                    </div>
-                    <div className="text-sm text-green-600">
-                      ou 10x de {(parseFloat(product.price.replace('R$ ', '').replace('.', '').replace(',', '.')) / 10).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                    </div>
-                  </div>
-                  <Button className="w-full">
-                    <ShoppingCart className="h-4 w-4 mr-2" />
-                    Comprar
-                  </Button>
-                </CardContent>
+                </CardFooter>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Promotional Banner */}
-      <section className="promo-gradient py-12 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Cartão CasasBahia</h2>
-          <p className="text-xl mb-6">Tenha desconto exclusivo e parcele sem juros</p>
-          <Button size="lg" variant="secondary">
-            Peça o Seu
-          </Button>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-card border-t py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4">Institucional</h3>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:underline">Quem Somos</a></li>
-                <li><a href="#" className="hover:underline">Trabalhe Conosco</a></li>
-                <li><a href="#" className="hover:underline">Investidores</a></li>
-                <li><a href="#" className="hover:underline">Sustentabilidade</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Atendimento</h3>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:underline">Central de Ajuda</a></li>
-                <li><a href="#" className="hover:underline">Fale Conosco</a></li>
-                <li><a href="#" className="hover:underline">Meus Pedidos</a></li>
-                <li><a href="#" className="hover:underline">Trocas e Devoluções</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Serviços</h3>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:underline">Cartão CasasBahia</a></li>
-                <li><a href="#" className="hover:underline">Seguro</a></li>
-                <li><a href="#" className="hover:underline">Garantia Estendida</a></li>
-                <li><a href="#" className="hover:underline">Vale Presente</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Baixe o App</h3>
-              <div className="space-y-3">
-                <Button variant="outline" className="w-full justify-start">
-                  <div className="mr-3">📱</div>
-                  <div>
-                    <div className="text-xs">Baixar na</div>
-                    <div className="font-semibold">App Store</div>
-                  </div>
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <div className="mr-3">🤖</div>
-                  <div>
-                    <div className="text-xs">Disponível no</div>
-                    <div className="font-semibold">Google Play</div>
-                  </div>
-                </Button>
-              </div>
-            </div>
-          </div>
-          <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 CasasBahia. Todos os direitos reservados.</p>
-          </div>
+      <footer className="bg-muted py-12 mt-20">
+        <div className="container mx-auto px-4 text-center">
+          <h4 className="text-xl font-semibold mb-4">Entre em contato</h4>
+          <p className="text-muted-foreground mb-6">
+            Dúvidas? Fale conosco pelo WhatsApp e tire todas as suas dúvidas!
+          </p>
+          <Button 
+            onClick={() => contactWhatsApp("informações gerais")}
+            size="lg"
+            className="bg-green-600 hover:bg-green-700 text-white gap-3"
+          >
+            <MessageCircle size={20} />
+            Falar no WhatsApp
+          </Button>
+          <p className="text-xs text-muted-foreground mt-6">
+            © 2024 iPhone Store - Todos os direitos reservados
+          </p>
         </div>
       </footer>
+
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          onClick={() => contactWhatsApp("atendimento")}
+          size="icon"
+          className="w-14 h-14 rounded-full bg-green-600 hover:bg-green-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        >
+          <MessageCircle size={24} />
+        </Button>
+      </div>
     </div>
   );
 };
